@@ -96,8 +96,7 @@ class Program
         // checks the current Orbwalker mode Combo/Mixed/LaneClear/LastHit
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
-            // combo to kill the enemy
-            W.Cast(Player);
+                VenomCask();
         }
     }
 
