@@ -81,7 +81,7 @@ class Program
         Game.OnUpdate += Game_OnUpdate;
 
         // print text in local chat
-        Game.PrintChat("Welcome to Twitch2");
+        Game.PrintChat("Welcome to Twitch4444444444444");
     }
 
     /// <summary>
@@ -89,17 +89,21 @@ class Program
     /// </summary>
     private static void Game_OnUpdate(EventArgs args)
     {
-        var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);
-        // dont do stuff while dead
-        if (Player.IsDead)
-            return;
+        var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Magical);
 
-        if (!Menu.Item("useQ").GetValue<bool>())
+        if (!Menu.Item("useW").GetValue<bool>())
+        {
             return;
+        }
+
+        if (!target.IsValidTarget())
+        {
+            return;
+        }
         // checks the current Orbwalker mode Combo/Mixed/LaneClear/LastHit
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
-            W.CastOnUnit(target);
+                W.Cast(target);
         }
     }
 
