@@ -89,14 +89,17 @@ class Program
     /// </summary>
     private static void Game_OnUpdate(EventArgs args)
     {
+        var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);
         // dont do stuff while dead
         if (Player.IsDead)
             return;
 
+        if (!Menu.Item("useQ").GetValue<bool>())
+            return;
         // checks the current Orbwalker mode Combo/Mixed/LaneClear/LastHit
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
-            W.Cast(Player);
+            W.CastOnUnit(target);
         }
     }
 
@@ -107,19 +110,4 @@ class Program
     /// <summary>
     /// Consume logic
     /// </summary>
-
-    private static void VenomCask()
-    {
-        var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);
-        // check if the player wants to use R
-        if (!Menu.Item("useQ").GetValue<bool>())
-            return;
-
-        // fast lane clear
-        // use Nunu Q to clear the lane faster
-        if (W.IsReady()) // check if Qready
-        {
-            W.CastOnUnit(target);
-        }
-    }
 }
