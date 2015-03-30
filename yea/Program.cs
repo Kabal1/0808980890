@@ -110,6 +110,7 @@ class Program
 
     private static void VenomCask()
     {
+        var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);
         // check if the player wants to use R
         if (!Menu.Item("useQ").GetValue<bool>())
             return;
@@ -118,7 +119,7 @@ class Program
         // use Nunu Q to clear the lane faster
         if (W.IsReady()) // check if Qready
         {
-            W.CastOnUnit(Player);
+            W.CastOnUnit(target);
         }
     }
 }
