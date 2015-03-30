@@ -76,14 +76,12 @@ class Program
         // attach to 'Sift/F9' Menu
         Menu.AddToMainMenu();
 
-        // subscribe to Drawing event
-        Drawing.OnDraw += Drawing_OnDraw;
 
         // subscribe to Update event gets called every game update around 10ms
         Game.OnUpdate += Game_OnUpdate;
 
         // print text in local chat
-        Game.PrintChat("Welcome to Education Nunu");
+        Game.PrintChat("Welcome to Twitch");
     }
 
     /// <summary>
@@ -105,25 +103,7 @@ class Program
 
     /// <summary>
     /// Main Draw Method
-    /// </summary>
-    private static void Drawing_OnDraw(EventArgs args)
-    {
-        // dont draw stuff while dead
-        if (Player.IsDead)
-            return;
-
-        // check if E ready
-        if (Q.IsReady())
-        {
-            // draw Aqua circle around the player
-            Utility.DrawCircle(Player.Position, Q.Range, Color.Aqua);
-        }
-        else
-        {
-            // draw DarkRed circle around the player while on cd
-            Utility.DrawCircle(Player.Position, Q.Range, Color.DarkRed);
-        }
-    }
+    /// </summary
 
     /// <summary>
     /// Consume logic
@@ -141,12 +121,6 @@ class Program
         {
             // get the amount of enemy minions in Ultimate range
             int minionsInUltimateRange = MinionManager.GetMinions(Player.Position, Q.Range).Count;
-
-            if (minionsInUltimateRange > 5)
-            {
-                // cast Ultimate, gold incomming
-                Q.CastOnUnit(Player);
-            }
         }
     }
 }
