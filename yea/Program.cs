@@ -14,7 +14,7 @@ class Program
     private static Orbwalking.Orbwalker Orbwalker;
 
     // declare  list of spells
-    private static Spell Q;
+    private static Spell W;
 
 
     // declare menu
@@ -41,7 +41,7 @@ class Program
 
         // the Spell class provides methods to check and cast Spells
         // Constructor Spell(SpellSlot slot, float range)
-        Q = new Spell(SpellSlot.Q, 900); // create Q spell with a range of 125 units
+        W = new Spell(SpellSlot.W, 950); // create Q spell with a range of 125 units
 
         // set spells prediction values, not used on Nunu
         // Method Spell.SetSkillshot(float delay, float width, float speed, bool collision, SkillshotType type)
@@ -71,7 +71,7 @@ class Program
         // Menu.AddItem(MenuItem item) returns added MenuItem
         // Constructor MenuItem(string name, string displayName)
         // .SetValue(true) on/off button
-        spellMenu.AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
+        spellMenu.AddItem(new MenuItem("useW", "Use W").SetValue(true));
 
         // attach to 'Sift/F9' Menu
         Menu.AddToMainMenu();
@@ -81,7 +81,7 @@ class Program
         Game.OnUpdate += Game_OnUpdate;
 
         // print text in local chat
-        Game.PrintChat("Welcome to Twitch");
+        Game.PrintChat("Welcome to Twitch2");
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ class Program
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
             // combo to kill the enemy
-            Ambush();
+            VenomCask();
         }
     }
 
@@ -109,7 +109,7 @@ class Program
     /// Consume logic
     /// </summary>
 
-    private static void Ambush()
+    private static void VenomCask()
     {
         // check if the player wants to use R
         if (!Menu.Item("useQ").GetValue<bool>())
@@ -117,9 +117,9 @@ class Program
 
         // fast lane clear
         // use Nunu Q to clear the lane faster
-        if (Q.IsReady()) // check if Qready
+        if (W.IsReady()) // check if Qready
         {
-            Q.CastOnUnit(Player);
+            W.CastOnUnit(Player);
         }
     }
 }
