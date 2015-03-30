@@ -119,8 +119,7 @@ class Program
         // use Nunu R to clear the lane faster
         if (Q.IsReady()) // check if R ready
         {
-            // get the amount of enemy minions in Ultimate range
-            int minionsInUltimateRange = MinionManager.GetMinions(Player.Position, Q.Range).Count;
+            Q.CastOnUnit(Player);
         }
     }
 }
