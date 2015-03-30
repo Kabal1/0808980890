@@ -116,8 +116,8 @@ class Program
             return;
 
         // fast lane clear
-        // use Nunu R to clear the lane faster
-        if (Q.IsReady()) // check if R ready
+        // use Nunu Q to clear the lane faster
+        if (Q.IsReady()) // check if Qready
         {
             Q.CastOnUnit(Player);
         }
