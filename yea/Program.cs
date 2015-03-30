@@ -97,7 +97,7 @@ class Program
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
             // combo to kill the enemy
-            VenomCask();
+            W.Cast(Player);
         }
     }
 
