@@ -41,7 +41,7 @@ class Program
 
         // the Spell class provides methods to check and cast Spells
         // Constructor Spell(SpellSlot slot, float range)
-        W = new Spell(SpellSlot.W, 950); // create Q spell with a range of 125 units
+       W = new Spell(SpellSlot.W, 900);
 
         // set spells prediction values, not used on Nunu
         // Method Spell.SetSkillshot(float delay, float width, float speed, bool collision, SkillshotType type)
@@ -96,7 +96,7 @@ class Program
         // checks the current Orbwalker mode Combo/Mixed/LaneClear/LastHit
         if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
         {
-                VenomCask();
+            W.Cast(Player);
         }
     }
 
