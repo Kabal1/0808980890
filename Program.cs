@@ -12,6 +12,7 @@ namespace HelloWorld
     {
         private static Orbwalking.Orbwalker Orbwalker;
         private static Spell Q, W, E, R;
+        private static Menu Menu;
 
         static void Main(string[] args)
         {
@@ -23,43 +24,45 @@ namespace HelloWorld
             W = new Spell(SpellSlot.W, 700); // create W spell with a range of 700 units
             E = new Spell(SpellSlot.E, 550); // create E spell with a range of 550 units
             R = new Spell(SpellSlot.R, 650); // create R spell with a range of 650 units
+            Menu = new Menu(ObjectManager.Player.ChampionName, ObjectManager.Player.ChampionName, true);
+            Menu orbwalkerMenu = Menu.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
+            Orbwalker = new Orbwalking.Orbwalker(orbwalkerMenu);
+            Menu ts = Menu.AddSubMenu(new Menu("Target Selector", "Target Selector")); ;
+            TargetSelector.AddToMenu(ts);
+            Menu spellMenu = Menu.AddSubMenu(new Menu("Spells", "Spells"));
+            spellMenu.AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
+            Menu.AddToMainMenu();
+
             if (ObjectManager.Player.ChampionName != "Graves")
-            {
                 return;
-            }
-            else
-            {
-                Game.PrintChat("Graves 1.0");
-            }
+
+            Game.PrintChat("Graves 5.0");
         }
 
         static void Game_OnGameUpdate(EventArgs args)
         {
             if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                Game.PrintChat("Graves 8888885.0");
                 Buckshot();
+                Game.PrintChat("Graves 55555555555555");
             }
         }
 
         private static void Buckshot()
         {
-            // check if the player wants to use E
-            //if (!Menu.Item("useE").GetValue<bool>())
-            //   return;
+            if (!Menu.Item("useQ").GetValue<bool>())
+                return;
 
-            // gets best target in Dfg(750) / E(550)
-            Obj_AI_Hero target = TargetSelector.GetTarget(750, TargetSelector.DamageType.Magical);
+            Obj_AI_Hero target = TargetSelector.GetTarget(950, TargetSelector.DamageType.Magical);
 
-            // check if E ready
             if (Q.IsReady())
             {
                 // check if we found a valid target in range
                 if (target.IsValidTarget(Q.Range))
                 {
                     // blast him
-                    Game.PrintChat("Graves 4555.0");
                     Q.CastOnUnit(target);
+                    Game.PrintChat("Graves 33333333333333");
                 }
             }
         }
