@@ -36,7 +36,7 @@ namespace HelloWorld
             if (ObjectManager.Player.ChampionName != "Graves")
                 return;
 
-                Game.PrintChat("Graves 1.0");
+                Game.PrintChat("Graves 3.0");
         }
 
         static void Game_OnGameUpdate(EventArgs args)
