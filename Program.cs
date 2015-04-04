@@ -41,10 +41,16 @@ namespace HelloWorld
 
         static void Game_OnGameUpdate(EventArgs args)
         {
-            if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
+            if (Orbwalker.ActiveMode.ToString() == "Combo")
             {
-                Buckshot();
-                Game.PrintChat("Graves 55555555555555");
+                Obj_AI_Base t = TargetSelector.GetTarget(875f, TargetSelector.DamageType.Magical, true);
+
+                if (Q.IsReady())
+                {
+                    if (t.IsValidTarget(Q.Range) &&
+                    !t.HasBuffOfType(BuffType.Invulnerability))
+                        Q.Cast(t, true, true);
+                }
             }
         }
 
