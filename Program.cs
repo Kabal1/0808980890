@@ -49,14 +49,11 @@ namespace HelloWorld
 
         private static void Buckshot()
         {
-            // check if the player wants to use E
-            //if (!Menu.Item("useE").GetValue<bool>())
-            //   return;
+           if (!Menu.Item("useQ").GetValue<bool>())
+               return;
 
-            // gets best target in Dfg(750) / E(550)
-            Obj_AI_Hero target = TargetSelector.GetTarget(750, TargetSelector.DamageType.Magical);
+           Obj_AI_Hero target = TargetSelector.GetTarget(950, TargetSelector.DamageType.Magical);
 
-            // check if E ready
             if (Q.IsReady())
             {
                 // check if we found a valid target in range
