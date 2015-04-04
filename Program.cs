@@ -31,15 +31,12 @@ namespace HelloWorld
             TargetSelector.AddToMenu(ts);
             Menu spellMenu = Menu.AddSubMenu(new Menu("Spells", "Spells"));
             spellMenu.AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
+            Menu.AddToMainMenu();
 
             if (ObjectManager.Player.ChampionName != "Graves")
-            {
                 return;
-            }
-            else
-            {
-                Game.PrintChat("Graves 2.0");
-            }
+
+                Game.PrintChat("Graves 1.0");
         }
 
         static void Game_OnGameUpdate(EventArgs args)
