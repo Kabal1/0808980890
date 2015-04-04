@@ -38,7 +38,7 @@ namespace HelloWorld
             }
             else
             {
-                Game.PrintChat("Graves 1.0");
+                Game.PrintChat("Graves 2.0");
             }
         }
 
