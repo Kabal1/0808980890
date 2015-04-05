@@ -5,73 +5,84 @@ using System.Text;
 using System.Threading.Tasks;
 using LeagueSharp;
 using LeagueSharp.Common;
+using LeagueSharp.Common.Data;
+using SharpDX;
+using Color = System.Drawing.Color;
 
-namespace HelloWorld
+namespace Draven
 {
     class Program
     {
-        private static Orbwalking.Orbwalker Orbwalker;
-        private static Spell Q, W, E, R;
-        private static Menu Menu;
+        private static Obj_AI_Hero Player { get { return ObjectManager.Player; } }
 
+        public static Orbwalking.Orbwalker Orbwalker;
+
+        public static Spell Q, W, E, R;
+
+        public static Menu Menu;
+
+
+        public static float Rcount;
         static void Main(string[] args)
         {
-            CustomEvents.Game.OnGameLoad += Game_OngameLoad;
+            CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
-        static void Game_OngameLoad(EventArgs args)
+        private static void Game_OnGameLoad(EventArgs args)
         {
-            Q = new Spell(SpellSlot.Q, 950); // create Q spell with a range of 125 units
-            W = new Spell(SpellSlot.W, 700); // create W spell with a range of 700 units
-            E = new Spell(SpellSlot.E, 550); // create E spell with a range of 550 units
-            R = new Spell(SpellSlot.R, 650); // create R spell with a range of 650 units
-            Menu = new Menu(ObjectManager.Player.ChampionName, ObjectManager.Player.ChampionName, true);
-            Menu orbwalkerMenu = Menu.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
+            if (Player.ChampionName != "Draven")
+                return;
+
+            Q = new Spell(SpellSlot.Q);
+            W = new Spell(SpellSlot.W);
+            E = new Spell(SpellSlot.E, 1050);
+            R = new Spell(SpellSlot.R);
+            Q.SetSkillshot(250, 130, 1400, false, SkillshotType.SkillshotLine);
+            R.SetSkillshot(400, 160, 2000, false, SkillshotType.SkillshotLine);
+
+            Menu = new Menu(Player.ChampionName, Player.ChampionName, true);
+            Menu orbwalkerMenu = new Menu("Orbwalker", "Orbwalker");
             Orbwalker = new Orbwalking.Orbwalker(orbwalkerMenu);
+            Menu.AddSubMenu(orbwalkerMenu);
             Menu ts = Menu.AddSubMenu(new Menu("Target Selector", "Target Selector")); ;
             TargetSelector.AddToMenu(ts);
             Menu spellMenu = Menu.AddSubMenu(new Menu("Spells", "Spells"));
-            spellMenu.AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
+
+            Menu Harass = spellMenu.AddSubMenu(new Menu("Harass", "Harass"));
+
+            Menu Combo = spellMenu.AddSubMenu(new Menu("Combo", "Combo"));
+
+            Menu LaneClear = spellMenu.AddSubMenu(new Menu("LaneClear", "LaneClear"));
+
+            Menu JungClear = spellMenu.AddSubMenu(new Menu("JungClear", "JungClear"));
+
+            Combo.AddItem(new MenuItem("Use Q Combo", "Use Q Combo").SetValue(true));
             Menu.AddToMainMenu();
 
-            if (ObjectManager.Player.ChampionName != "Graves")
-                return;
-
-            Game.PrintChat("Graves 5.0");
+            Game.OnUpdate += Game_OnGameUpdate;
+            Game.PrintChat("Welcome to Draven World");
         }
 
-        static void Game_OnGameUpdate(EventArgs args)
+        public static void Game_OnGameUpdate(EventArgs args)
         {
-            if (Orbwalker.ActiveMode.ToString() == "Combo")
+            //checkbuff();
+            if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                Obj_AI_Base t = TargetSelector.GetTarget(875f, TargetSelector.DamageType.Magical, true);
+                Combo();
+            }
+            if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Mixed)
+            {
 
-                if (Q.IsReady())
-                {
-                    if (t.IsValidTarget(Q.Range) &&
-                    !t.HasBuffOfType(BuffType.Invulnerability))
-                        Q.Cast(t, true, true);
-                }
+            }
+            if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.LaneClear)
+            {
+
             }
         }
 
-        private static void Buckshot()
+        static void Combo()
         {
-            if (!Menu.Item("useQ").GetValue<bool>())
-                return;
-
-            Obj_AI_Hero target = TargetSelector.GetTarget(950, TargetSelector.DamageType.Magical);
-
-            if (Q.IsReady())
-            {
-                // check if we found a valid target in range
-                if (target.IsValidTarget(Q.Range))
-                {
-                    // blast him
-                    Q.CastOnUnit(target);
-                    Game.PrintChat("Graves 33333333333333");
-                }
-            }
+            Q.Cast();
         }
-
     }
+
 }
