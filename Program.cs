@@ -59,7 +59,7 @@ namespace Draven
             Menu.AddToMainMenu();
 
             Game.OnUpdate += Game_OnGameUpdate;
-            Game.PrintChat("W11");
+            Game.PrintChat("11d");
         }
 
         public static void Game_OnGameUpdate(EventArgs args)
@@ -68,6 +68,7 @@ namespace Draven
             if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
                 Combo();
+                Game.PrintChat("2");
             }
             if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Mixed)
             {
@@ -82,6 +83,7 @@ namespace Draven
         static void Combo()
         {
             Q.Cast();
+            Game.PrintChat("e");
         }
     }
 
