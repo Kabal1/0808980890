@@ -82,7 +82,7 @@ namespace Draven
 
         static void Combo()
         {
-            Q.Cast(Game.CursorPos)
+            Q.Cast(Game.CursorPos);
             Game.PrintChat("e");
         }
     }
