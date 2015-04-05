@@ -29,7 +29,7 @@ namespace Draven
         }
         private static void Game_OnGameLoad(EventArgs args)
         {
-            if (Player.ChampionName != "Draven")
+            if (Player.ChampionName != "Graves")
                 return;
 
             Q = new Spell(SpellSlot.Q);
@@ -59,7 +59,7 @@ namespace Draven
             Menu.AddToMainMenu();
 
             Game.OnUpdate += Game_OnGameUpdate;
-            Game.PrintChat("Welcome to Draven World");
+            Game.PrintChat("W11");
         }
 
         public static void Game_OnGameUpdate(EventArgs args)
