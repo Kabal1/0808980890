@@ -7,8 +7,8 @@
     <ProjectGuid>{AA3CCD79-523D-4CCA-93D1-43441271AABD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AsheTheTroll</RootNamespace>
-    <AssemblyName>AsheTheTroll</AssemblyName>
+    <RootNamespace>Ash</RootNamespace>
+    <AssemblyName>Ash</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
