@@ -5,7 +5,7 @@ using EloBuddy.SDK;
 using SharpDX;
 using Color = System.Drawing.Color;
 
-namespace AsheTheTroll
+namespace Ash
 {
     public static class DamageIndicator
     {
