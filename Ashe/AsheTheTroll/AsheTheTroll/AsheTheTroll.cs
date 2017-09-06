@@ -12,9 +12,9 @@ using SharpDX;
 using SharpDX.Direct3D9;
 using Color = System.Drawing.Color;
 
-namespace AsheTheTroll
+namespace Ash
 {
-    internal class AsheTheTroll
+    internal class Ash
     {
         public static Spell.Active Q;
         public static Spell.Skillshot W;
