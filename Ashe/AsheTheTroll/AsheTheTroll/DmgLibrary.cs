@@ -1,7 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 
-namespace AsheTheTroll
+namespace Ash
 {
     class DmgLibrary
     {
@@ -10,8 +10,8 @@ namespace AsheTheTroll
         {
             return
                 (int)
-                    (new[] { 10, 60, 110, 160, 210 }[AsheTheTroll.W.Level - 1] +
-                     1.4 * (AsheTheTroll._Player.TotalAttackDamage));
+                    (new[] { 10, 60, 110, 160, 210 }[Ash.W.Level - 1] +
+                     1.4 * (Ash._Player.TotalAttackDamage));
         }
 
         public static float RDamage(Obj_AI_Base target)
@@ -19,7 +19,7 @@ namespace AsheTheTroll
 
             if (!Player.GetSpell(SpellSlot.R).IsLearned) return 0;
             return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical,
-                (float)new double[] { 250, 425, 600 }[AsheTheTroll.R.Level - 1] + 1 * Player.Instance.FlatMagicDamageMod);
+                (float)new double[] { 250, 425, 600 }[Ash.R.Level - 1] + 1 * Player.Instance.FlatMagicDamageMod);
 
         }
     }
