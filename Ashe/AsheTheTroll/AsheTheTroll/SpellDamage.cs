@@ -1,7 +1,7 @@
 using EloBuddy;
 using EloBuddy.SDK;
 
-namespace AsheTheTroll
+namespace Ash
 {
     public static class SpellDamage
     {
@@ -10,17 +10,17 @@ namespace AsheTheTroll
             float damage = 0;
             if (target != null)
             {
-                if (AsheTheTroll.Q.IsReady())
+                if (Ash.Q.IsReady())
                 {
                     damage += Player.Instance.GetSpellDamage(target, SpellSlot.Q);
                     damage += Player.Instance.GetAutoAttackDamage(target);
                 }
-                if (AsheTheTroll.W.IsReady())
+                if (Ash.W.IsReady())
                 {
                     damage += Player.Instance.GetSpellDamage(target, SpellSlot.W);
                     damage += Player.Instance.GetAutoAttackDamage(target);
                 }
-                if (AsheTheTroll.R.IsReady())
+                if (Ash.R.IsReady())
                 {
                     damage += Player.Instance.GetSpellDamage(target, SpellSlot.R);
                     damage += Player.Instance.GetAutoAttackDamage(target);
